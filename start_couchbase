@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -u
+
+flags=-itd
+if [ "${debug:-}" ]; then
+    flags=-it
+	fi
+
+# for some reason haven't got this to work
+# --net=host 
+docker run $flags --rm -v ~/couchbase4Game:/opt/couchbase/var --name couchbase --ulimit nofile=70000:70000 --ulimit core=100000000:100000000 --ulimit memlock=100000000:100000000  -p 8091-8094:8091-8094 -p 11210:11210 couchbase:community 
+
